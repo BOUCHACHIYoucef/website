@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping Gear Website | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  </head>
+  <style>
+/* From */
+.form_containera {
+  position: fixed;
+  max-width: 300px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 101;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease-out;
+}
+.homea.show .form_containera {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.signup_form {
+  display: none;
+}
+.form_containera.active .signup_form {
+  display: block;
+}
+.form_containera.active .login_form {
+  display: none;
+}
+.form_close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #0b0217;
+  font-size: 22px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.form_containera h2 {
+  font-size: 22px;
+  color: #0b0217;
+  text-align: center;
+}
+.input_boxa {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  height: 40px;
+}
+.input_boxa input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0 30px;
+  color: #333;
+  transition: all 0.2s ease;
+  border-bottom: 1.5px solid #aaaaaa;
+}
+.input_boxa input:focus {
+  border-color: #7d2ae8;
+}
+.input_boxa i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #707070;
+}
+.input_boxa i.email,
+.input_boxa i.password {
+  left: 0;
+}
+.input_boxa input:focus ~ i.email,
+.input_boxa input:focus ~ i.password {
+  color: #7d2ae8;
+}
+.input_boxa i.pw_hide {
+  right: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+.option_field {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form_containera a {
+  color: #7d2ae8;
+  font-size: 12px;
+}
+.form_containera a:hover {
+  text-decoration: underline;
+}
+.checkbox {
+  display: flex;
+  column-gap: 8px;
+  white-space: nowrap;
+}
+.checkbox input {
+  accent-color: #7d2ae8;
+}
+.checkbox label {
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  color: #0b0217;
+}
+.form_containera .buttona {
+  background: #7d2ae8;
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+.login_signup {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+}
+  </style>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h2 class="logo"><a href="#">LOGO</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </label>
+        <ul class="all-links">
+          <li><a href="#home">home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <button class="buttona" id="form-open" >Login</button>
+      </nav>
+    </header>
+    <section class="homepage" id="home"></section>
+    <!-- homea -->
+    <section class="homea">
+      <div class="form_containera">
+        <i class="uil uil-times form_close"></i>
+        <!-- Login From -->
+        <div class="form login_form">
+          <form action="#">
+            <h2>Login</h2>
+
+            <div class="input_boxa">
+              <input type="email" placeholder="Enter your email" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_boxa">
+              <input type="password" placeholder="Enter your password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+
+            <div class="option_field">
+              <span class="checkbox">
+                <input type="checkbox" id="check" />
+                <label for="check">Remember me</label>
+              </span>
+              <a href="#" class="forgot_pw">Forgot password?</a>
+            </div>
+
+            <button class="buttona">Login Now</button>
+
+            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+          </form>
+        </div>
+
+        <!-- Signup From -->
+        <div class="form signup_form">
+          <form action="#">
+            <h2>Signup</h2>
+
+            <div class="input_boxa">
+              <input type="email" placeholder="Enter your email" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_boxa">
+              <input type="password" placeholder="Create password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <div class="input_boxa">
+              <input type="password" placeholder="Confirm password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+
+            <button class="buttona">Signup Now</button>
+
+            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    
+      <div class="content">
+        <div class="text">
+          <h1>Camping Gear and Essentials</h1>
+          <p>
+            Discover top-quality camping gear for unforgettable outdoor adventures. <br> Gear up and make lasting memories.</p>
+        </div>
+        <a href="#services">Our Services</a>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <h2>Our Services</h2>
+      <p>Explore our wide range of camping gear services.</p>
+      <ul class="cards">
+        <li class="card">
+          <img src="images/tents.jpg" alt="img">
+          <h3>Tents</h3>
+          <p>Experience comfort and protection with our high-quality camping tents.</p>
+        </li>
+        <li class="card">
+          <img src="images/bags.jpg" alt="img">
+          <h3>Sleeping Bags</h3>
+          <p>Stay cozy and warm during your camping trips with our premium sleeping bags.</p>
+        </li>
+        <li class="card">
+          <img src="images/stoves.jpg" alt="img">
+          <h3>Camp Stoves</h3>
+          <p>Cook delicious meals in the great outdoors with our reliable camp stoves.</p>
+        </li>
+        <li class="card">
+          <img src="images/backpacks.jpg" alt="img">
+          <h3>Backpacks</h3>
+          <p>Carry your essentials comfortably with our durable and functional camping backpacks.</p>
+        </li>
+        <li class="card">
+          <img src="images/chair.jpg" alt="img">
+          <h3>Camp Chairs</h3>
+          <p>Relax and unwind in style with our comfortable and portable camping chairs.</p>
+        </li>
+        <li class="card">
+          <img src="images/light.jpg" alt="img">
+          <h3>Camp Lights</h3>
+          <p>Illuminate your campsite with our reliable and energy-efficient camping lights.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <h2>Our Portfolio</h2>
+      <p>Take a look at some of our memorable camping adventures.</p>
+      <ul class="cards">
+        <li class="card">
+          <img src="images/camping-1.jpg" alt="img">
+          <h3>Mountain Hiking</h3>
+          <p>Embark on an exhilarating hiking adventure in the breathtaking mountain ranges.</p>
+        </li>
+        <li class="card">
+          <img src="images/camping-2.jpg" alt="img">
+          <h3>Lakeside Camping</h3>
+          <p>Enjoy a tranquil camping experience by the serene shores of picturesque lakes.</p>
+        </li>
+        <li class="card">
+          <img src="images/camping-3.jpg" alt="img">
+          <h3>Beach Camping</h3>
+          <p>Escape to sandy beaches and camp under the starry sky by the crashing waves.</p>
+        </li>
+        <li class="card">
+          <img src="images/camping-4.jpg" alt="img">
+          <h3>Forest Exploration</h3>
+          <p>Discover the wonders of lush forests and immerse yourself in nature's beauty.</p>
+        </li>
+        <li class="card">
+          <img src="images/camping-5.jpg" alt="img">
+          <h3>RV Camping</h3>
+          <p>Experience the freedom of road trips and camping adventures with our RV rentals.</p>
+        </li>
+        <li class="card">
+          <img src="images/camping-6.jpg" alt="img">
+          <h3>Desert Camping</h3>
+          <p>Embark on a unique desert camping experience and witness stunning landscapes.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <p>Discover our story in providing camping services.</p>
+      <div class="row company-info">
+        <h3>Our Story</h3>
+        <p>Experience the excellence of our camping gear and services, where we have been offering high-quality camping essentials and gear for outdoor enthusiasts for over a decade. Our commitment to quality and customer satisfaction ensures that every adventurer can rely on us for their camping needs.</p>
+      </div>
+      <div class="row mission-vision">
+        <h3>Our Mission</h3>
+        <p>At Camping Gear Experts, our mission is to equip outdoor enthusiasts with top-notch camping gear and essentials that enhance their outdoor experiences. We strive to provide reliable, durable, and innovative products that contribute to memorable adventures and lasting memories.</p>
+        <h3>Our Vision</h3>
+        <p>Our vision is to become the go-to destination for camping enthusiasts, known for our extensive selection of premium camping gear and exceptional customer service. We aspire to inspire and enable people to embrace the beauty of nature and create unforgettable camping experiences.</p>
+      </div>
+      <div class="row team">
+        <h3>Our Team</h3>
+        <ul>
+          <li>John Doe - Founder and CEO</li>
+          <li>Jane Smith - Gear Specialist</li>
+          <li>Mark Johnson - Customer Representative</li>
+          <li>Sarah Brown - Operations Manager</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>Reach out to us for any inquiries or feedback.</p>
+      <div class="row">
+        <div class="col information">
+          <div class="contact-details">
+            <p><i class="fas fa-map-marker-alt"></i> Ait bouda, Azazga, Tizi-ouzou, alger </p>
+            <p><i class="fas fa-envelope"></i> youcefbouchachi9@gmail.com</p>
+            <p><i class="fas fa-phone"></i> (+213) 0657510008</p>
+            <p><i class="fas fa-clock"></i> Monday - Friday: 9:00 AM - 5:00 PM</p>
+            <p><i class="fas fa-clock"></i> Saturday: 10:00 AM - 3:00 PM</p>
+            <p><i class="fas fa-clock"></i> Sunday: Closed</p>
+            <p><i class="fas fa-globe"></i> www.........com</p>
+          </div>          
+        </div>
+        <div class="col form">
+          <form>
+            <input type="text" placeholder="Name*" required>
+            <input type="email" placeholder="Email*" required>
+            <textarea placeholder="Message*" required></textarea>
+            <button id="submit" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <span>Copyright © 2023 Bouchachi youcef</span>
+        <span class="link">
+            <a href="#">home</a>
+            <a href="#contact">Contact</a>
+        </span>
+      </div>
+    </footer>
+
+  </body>
+
+<script>
+    const formOpenBtn = document.querySelector("#form-open"),
+  homea = document.querySelector(".homea"),
+  formContainer = document.querySelector(".form_containera"),
+  formCloseBtn = document.querySelector(".form_close"),
+  signupBtn = document.querySelector("#signup"),
+  loginBtn = document.querySelector("#login"),
+  pwShowHide = document.querySelectorAll(".pw_hide");
+
+formOpenBtn.addEventListener("click", () => homea.classList.add("show"));
+formCloseBtn.addEventListener("click", () => homea.classList.remove("show"));
+
+pwShowHide.forEach((icon) => {
+  icon.addEventListener("click", () => {
+    let getPwInput = icon.parentElement.querySelector("input");
+    if (getPwInput.type === "password") {
+      getPwInput.type = "text";
+      icon.classList.replace("uil-eye-slash", "uil-eye");
+    } else {
+      getPwInput.type = "password";
+      icon.classList.replace("uil-eye", "uil-eye-slash");
+    }
+  });
+});
+
+signupBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  formContainer.classList.add("active");
+});
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  formContainer.classList.remove("active");
+});
+
+</script>
+</html>
